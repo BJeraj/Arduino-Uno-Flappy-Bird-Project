@@ -1,0 +1,1388 @@
+int tmr = 4;
+int tmp = 8;
+int rdm = 1;
+int a = 0;
+
+void setup() {
+  
+  pinMode(2,OUTPUT);
+  pinMode(3,OUTPUT);
+  pinMode(4,OUTPUT);
+  pinMode(5,OUTPUT);
+  pinMode(6,OUTPUT);
+  pinMode(7,OUTPUT);
+  pinMode(8,OUTPUT);
+  pinMode(9,OUTPUT);
+  pinMode(10,OUTPUT);
+  pinMode(11,OUTPUT);
+  pinMode(12,OUTPUT);
+  pinMode(13,OUTPUT);
+  pinMode(A5,OUTPUT);
+  pinMode(A2,OUTPUT);
+  pinMode(A3,OUTPUT);
+  pinMode(A4,OUTPUT);
+  pinMode(A0,INPUT);
+  pinMode(A1,INPUT);
+
+  //vrstice 
+  digitalWrite(2,LOW);  //1
+  digitalWrite(7,LOW);  //2
+  digitalWrite(13,LOW);  //3
+  digitalWrite(5,LOW);  //4
+  digitalWrite(A5,LOW);  //5
+  digitalWrite(12,LOW);  //6
+  digitalWrite(A4,LOW);  //7
+  digitalWrite(10,LOW);  //8
+
+  //stolpci
+  digitalWrite(6,HIGH);  //1
+  digitalWrite(A3,HIGH);  //2
+  digitalWrite(A2,HIGH);  //3
+  digitalWrite(3,HIGH);  //4
+  digitalWrite(11,HIGH);  //5
+  digitalWrite(4,HIGH);  //6
+  digitalWrite(8,HIGH);  //7
+  digitalWrite(9,HIGH);  //8
+
+}  
+
+void loop() {
+  if(digitalRead(A0) == HIGH){
+     a++;
+  } 
+  
+  if(a >=1){
+      if(a == 1){
+      zacetek();
+      a++;
+    }
+    
+    if(tmr < 8){  //"gravitacija"
+      tmr++;
+      delay75();
+    }
+    if(a == 2){
+      tmp = 8;
+      
+    }
+    if(digitalRead(A0) == HIGH){  //jump
+      tmr = tmr - 1;
+      delay40();
+      player();
+      pipes();
+      tmr = tmr - 1;
+      delay40();
+      player();
+      pipes();
+      tmr = tmr - 1;
+      delay40();
+      player();
+      pipes(); 
+
+      }else {
+      player();
+    }
+    pipes();
+    reset();
+    if(a == 2){
+      tmp = 8;
+      a++;
+    } 
+    //-----------------------------------------------
+    if(tmp == 0){
+      tmp = 8;
+      rdm = 1 + (rand() % 4);
+      }else{
+        if(tmp >= 1 ){
+        tmp = tmp - 1;
+        delay100();
+        pipes();    
+        player();
+    
+      }
+    }
+    smrt();
+  }
+}
+
+void reset(){
+  //vrstice 
+  digitalWrite(2,LOW);  //1
+  digitalWrite(7,LOW);  //2
+  digitalWrite(13,LOW);  //3
+  digitalWrite(5,LOW);  //4
+  digitalWrite(A5,LOW);  //5
+  digitalWrite(12,LOW);  //6
+  digitalWrite(A4,LOW);  //7
+  digitalWrite(10,LOW);  //8
+
+  //stolpci
+  digitalWrite(6,HIGH);  //1
+  digitalWrite(A3,HIGH);  //2
+  digitalWrite(A2,HIGH);  //3
+  digitalWrite(3,HIGH);  //4
+  digitalWrite(11,HIGH);  //5
+  digitalWrite(4,HIGH);  //6
+  digitalWrite(8,HIGH);  //7
+  digitalWrite(9,HIGH);  //8
+
+}
+
+void player(){
+    if(tmr == 1){
+    //vrstice 
+  digitalWrite(2,HIGH);  //1
+  digitalWrite(7,LOW);  //2
+  digitalWrite(13,LOW);  //3
+  digitalWrite(5,LOW);  //4
+  digitalWrite(A5,LOW);  //5
+  digitalWrite(12,LOW);  //6
+  digitalWrite(A4,LOW);  //7
+  digitalWrite(10,LOW);  //8
+
+  //stolpci
+  digitalWrite(6,HIGH);  //1
+  digitalWrite(A3,HIGH);  //2
+  digitalWrite(A2,LOW);  //3
+  digitalWrite(3,HIGH);  //4
+  digitalWrite(11,HIGH);  //5
+  digitalWrite(4,HIGH);  //6
+  digitalWrite(8,HIGH);  //7
+  digitalWrite(9,HIGH);  //8
+
+  }
+  if(tmr == 2){
+    //vrstice 
+  digitalWrite(2,LOW);  //1
+  digitalWrite(7,HIGH);  //2
+  digitalWrite(13,LOW);  //3
+  digitalWrite(5,LOW);  //4
+  digitalWrite(A5,LOW);  //5
+  digitalWrite(12,LOW);  //6
+  digitalWrite(A4,LOW);  //7
+  digitalWrite(10,LOW);  //8
+
+  //stolpci
+  digitalWrite(6,HIGH);  //1
+  digitalWrite(A3,HIGH);  //2
+  digitalWrite(A2,LOW);  //3
+  digitalWrite(3,HIGH);  //4
+  digitalWrite(11,HIGH);  //5
+  digitalWrite(4,HIGH);  //6
+  digitalWrite(8,HIGH);  //7
+  digitalWrite(9,HIGH);  //8
+
+  }
+  if(tmr == 3){
+    //vrstice 
+  digitalWrite(2,LOW);  //1
+  digitalWrite(7,LOW);  //2
+  digitalWrite(13,HIGH);  //3
+  digitalWrite(5,LOW);  //4
+  digitalWrite(A5,LOW);  //5
+  digitalWrite(12,LOW);  //6
+  digitalWrite(A4,LOW);  //7
+  digitalWrite(10,LOW);  //8
+
+  //stolpci
+  digitalWrite(6,HIGH);  //1
+  digitalWrite(A3,HIGH);  //2
+  digitalWrite(A2,LOW);  //3
+  digitalWrite(3,HIGH);  //4
+  digitalWrite(11,HIGH);  //5
+  digitalWrite(4,HIGH);  //6
+  digitalWrite(8,HIGH);  //7
+  digitalWrite(9,HIGH);  //8
+
+  }
+  if(tmr == 4){
+    //vrstice 
+  digitalWrite(2,LOW);  //1
+  digitalWrite(7,LOW);  //2
+  digitalWrite(13,LOW);  //3
+  digitalWrite(5,HIGH);  //4
+  digitalWrite(A5,LOW);  //5
+  digitalWrite(12,LOW);  //6
+  digitalWrite(A4,LOW);  //7
+  digitalWrite(10,LOW);  //8
+
+  //stolpci
+  digitalWrite(6,HIGH);  //1
+  digitalWrite(A3,HIGH);  //2
+  digitalWrite(A2,LOW);  //3
+  digitalWrite(3,HIGH);  //4
+  digitalWrite(11,HIGH);  //5
+  digitalWrite(4,HIGH);  //6
+  digitalWrite(8,HIGH);  //7
+  digitalWrite(9,HIGH);  //8
+
+  }
+  if(tmr == 5){
+    //vrstice 
+  digitalWrite(2,LOW);  //1
+  digitalWrite(7,LOW);  //2
+  digitalWrite(13,LOW);  //3
+  digitalWrite(5,LOW);  //4
+  digitalWrite(A5,HIGH);  //5
+  digitalWrite(12,LOW);  //6
+  digitalWrite(A4,LOW);  //7
+  digitalWrite(10,LOW);  //8
+
+  //stolpci
+  digitalWrite(6,HIGH);  //1
+  digitalWrite(A3,HIGH);  //2
+  digitalWrite(A2,LOW);  //3
+  digitalWrite(3,HIGH);  //4
+  digitalWrite(11,HIGH);  //5
+  digitalWrite(4,HIGH);  //6
+  digitalWrite(8,HIGH);  //7
+  digitalWrite(9,HIGH);  //8
+
+  }
+  if(tmr == 6){
+    //vrstice 
+  digitalWrite(2,LOW);  //1
+  digitalWrite(7,LOW);  //2
+  digitalWrite(13,LOW);  //3
+  digitalWrite(5,LOW);  //4
+  digitalWrite(A5,LOW);  //5
+  digitalWrite(12,HIGH);  //6
+  digitalWrite(A4,LOW);  //7
+  digitalWrite(10,LOW);  //8
+
+  //stolpci
+  digitalWrite(6,HIGH);  //1
+  digitalWrite(A3,HIGH);  //2
+  digitalWrite(A2,LOW);  //3
+  digitalWrite(3,HIGH);  //4
+  digitalWrite(11,HIGH);  //5
+  digitalWrite(4,HIGH);  //6
+  digitalWrite(8,HIGH);  //7
+  digitalWrite(9,HIGH);  //8
+
+  }
+  if(tmr == 7){
+    //vrstice 
+  digitalWrite(2,LOW);  //1
+  digitalWrite(7,LOW);  //2
+  digitalWrite(13,LOW);  //3
+  digitalWrite(5,LOW);  //4
+  digitalWrite(A5,LOW);  //5
+  digitalWrite(12,LOW);  //6
+  digitalWrite(A4,HIGH);  //7
+  digitalWrite(10,LOW);  //8
+
+  //stolpci
+  digitalWrite(6,HIGH);  //1
+  digitalWrite(A3,HIGH);  //2
+  digitalWrite(A2,LOW);  //3
+  digitalWrite(3,HIGH);  //4
+  digitalWrite(11,HIGH);  //5
+  digitalWrite(4,HIGH);  //6
+  digitalWrite(8,HIGH);  //7
+  digitalWrite(9,HIGH);  //8
+
+  }
+  if(tmr == 8){
+    //vrstice 
+  digitalWrite(2,LOW);  //1
+  digitalWrite(7,LOW);  //2
+  digitalWrite(13,LOW);  //3
+  digitalWrite(5,LOW);  //4
+  digitalWrite(A5,LOW);  //5
+  digitalWrite(12,LOW);  //6
+  digitalWrite(A4,LOW);  //7
+  digitalWrite(10,HIGH);  //8
+
+  //stolpci
+  digitalWrite(6,HIGH);  //1
+  digitalWrite(A3,HIGH);  //2
+  digitalWrite(A2,LOW);  //3
+  digitalWrite(3,HIGH);  //4
+  digitalWrite(11,HIGH);  //5
+  digitalWrite(4,HIGH);  //6
+  digitalWrite(8,HIGH);  //7
+  digitalWrite(9,HIGH);  //8
+
+  }
+  reset();
+}
+void pipes(){  
+    if(tmp == 1){
+     if(rdm == 1){
+       //vrstice 
+      digitalWrite(2,HIGH);  //1
+      digitalWrite(7,HIGH);  //2
+      digitalWrite(13,HIGH);  //3
+      digitalWrite(5,HIGH);  //4
+      digitalWrite(A5,LOW);  //5
+      digitalWrite(12,LOW);  //6
+      digitalWrite(A4,LOW);  //7
+      digitalWrite(10,HIGH);  //8
+
+      //stolpci
+      digitalWrite(6,LOW);  //1
+      digitalWrite(A3,HIGH);  //2
+      digitalWrite(A2,HIGH);  //3
+      digitalWrite(3,HIGH);  //4
+      digitalWrite(11,HIGH);  //5
+      digitalWrite(4,HIGH);  //6
+      digitalWrite(8,HIGH);  //7
+      digitalWrite(9,HIGH);  //8
+      }
+
+      if(rdm == 2){
+        //vrstice 
+      digitalWrite(2,HIGH);  //1
+      digitalWrite(7,HIGH);  //2
+      digitalWrite(13,HIGH);  //3
+      digitalWrite(5,LOW);  //4
+      digitalWrite(A5,LOW);  //5
+      digitalWrite(12,LOW);  //6
+      digitalWrite(A4,HIGH);  //7
+      digitalWrite(10,HIGH);  //8
+
+      //stolpci
+      digitalWrite(6,LOW);  //1
+      digitalWrite(A3,HIGH);  //2
+      digitalWrite(A2,HIGH);  //3
+      digitalWrite(3,HIGH);  //4
+      digitalWrite(11,HIGH);  //5
+      digitalWrite(4,HIGH);  //6
+      digitalWrite(8,HIGH);  //7
+      digitalWrite(9,HIGH);  //8
+      }
+      if(rdm == 3){
+        //vrstice 
+      digitalWrite(2,HIGH);  //1
+      digitalWrite(7,HIGH);  //2
+      digitalWrite(13,LOW);  //3
+      digitalWrite(5,LOW);  //4
+      digitalWrite(A5,LOW);  //5
+      digitalWrite(12,HIGH);  //6
+      digitalWrite(A4,HIGH);  //7
+      digitalWrite(10,HIGH);  //8
+
+      //stolpci
+      digitalWrite(6,LOW);  //1
+      digitalWrite(A3,HIGH);  //2
+      digitalWrite(A2,HIGH);  //3
+      digitalWrite(3,HIGH);  //4
+      digitalWrite(11,HIGH);  //5
+      digitalWrite(4,HIGH);  //6
+      digitalWrite(8,HIGH);  //7
+      digitalWrite(9,HIGH);  //8
+      }
+      if(rdm == 4){
+        //vrstice 
+      digitalWrite(2,HIGH);  //1
+      digitalWrite(7,LOW);  //2
+      digitalWrite(13,LOW);  //3
+      digitalWrite(5,LOW);  //4
+      digitalWrite(A5,HIGH);  //5
+      digitalWrite(12,HIGH);  //6
+      digitalWrite(A4,HIGH);  //7
+      digitalWrite(10,HIGH);  //8
+
+      //stolpci
+      digitalWrite(6,LOW);  //1
+      digitalWrite(A3,HIGH);  //2
+      digitalWrite(A2,HIGH);  //3
+      digitalWrite(3,HIGH);  //4
+      digitalWrite(11,HIGH);  //5
+      digitalWrite(4,HIGH);  //6
+      digitalWrite(8,HIGH);  //7
+      digitalWrite(9,HIGH);  //8
+      }
+
+  }
+  if(tmp == 2){
+    if(rdm == 1){
+       //vrstice 
+      digitalWrite(2,HIGH);  //1
+      digitalWrite(7,HIGH);  //2
+      digitalWrite(13,HIGH);  //3
+      digitalWrite(5,HIGH);  //4
+      digitalWrite(A5,LOW);  //5
+      digitalWrite(12,LOW);  //6
+      digitalWrite(A4,LOW);  //7
+      digitalWrite(10,HIGH);  //8
+
+      //stolpci
+      digitalWrite(6,HIGH);  //1
+      digitalWrite(A3,LOW);  //2
+      digitalWrite(A2,HIGH);  //3
+      digitalWrite(3,HIGH);  //4
+      digitalWrite(11,HIGH);  //5
+      digitalWrite(4,HIGH);  //6
+      digitalWrite(8,HIGH);  //7
+      digitalWrite(9,HIGH);  //8
+      }
+
+      if(rdm == 2){
+        //vrstice 
+      digitalWrite(2,HIGH);  //1
+      digitalWrite(7,HIGH);  //2
+      digitalWrite(13,HIGH);  //3
+      digitalWrite(5,LOW);  //4
+      digitalWrite(A5,LOW);  //5
+      digitalWrite(12,LOW);  //6
+      digitalWrite(A4,HIGH);  //7
+      digitalWrite(10,HIGH);  //8
+
+      //stolpci
+      digitalWrite(6,HIGH);  //1
+      digitalWrite(A3,LOW);  //2
+      digitalWrite(A2,HIGH);  //3
+      digitalWrite(3,HIGH);  //4
+      digitalWrite(11,HIGH);  //5
+      digitalWrite(4,HIGH);  //6
+      digitalWrite(8,HIGH);  //7
+      digitalWrite(9,HIGH);  //8
+      }
+      if(rdm == 3){
+        //vrstice 
+      digitalWrite(2,HIGH);  //1
+      digitalWrite(7,HIGH);  //2
+      digitalWrite(13,LOW);  //3
+      digitalWrite(5,LOW);  //4
+      digitalWrite(A5,LOW);  //5
+      digitalWrite(12,HIGH);  //6
+      digitalWrite(A4,HIGH);  //7
+      digitalWrite(10,HIGH);  //8
+
+      //stolpci
+      digitalWrite(6,HIGH);  //1
+      digitalWrite(A3,LOW);  //2
+      digitalWrite(A2,HIGH);  //3
+      digitalWrite(3,HIGH);  //4
+      digitalWrite(11,HIGH);  //5
+      digitalWrite(4,HIGH);  //6
+      digitalWrite(8,HIGH);  //7
+      digitalWrite(9,HIGH);  //8
+      }
+      if(rdm == 4){
+        //vrstice 
+      digitalWrite(2,HIGH);  //1
+      digitalWrite(7,LOW);  //2
+      digitalWrite(13,LOW);  //3
+      digitalWrite(5,LOW);  //4
+      digitalWrite(A5,HIGH);  //5
+      digitalWrite(12,HIGH);  //6
+      digitalWrite(A4,HIGH);  //7
+      digitalWrite(10,HIGH);  //8
+
+      //stolpci
+      digitalWrite(6,HIGH);  //1
+      digitalWrite(A3,LOW);  //2
+      digitalWrite(A2,HIGH);  //3
+      digitalWrite(3,HIGH);  //4
+      digitalWrite(11,HIGH);  //5
+      digitalWrite(4,HIGH);  //6
+      digitalWrite(8,HIGH);  //7
+      digitalWrite(9,HIGH);  //8
+      }
+  }
+  if(tmp == 3){
+   if(rdm == 1){
+       //vrstice 
+      digitalWrite(2,HIGH);  //1
+      digitalWrite(7,HIGH);  //2
+      digitalWrite(13,HIGH);  //3
+      digitalWrite(5,HIGH);  //4
+      digitalWrite(A5,LOW);  //5
+      digitalWrite(12,LOW);  //6
+      digitalWrite(A4,LOW);  //7
+      digitalWrite(10,HIGH);  //8
+
+      //stolpci
+      digitalWrite(6,HIGH);  //1
+      digitalWrite(A3,HIGH);  //2
+      digitalWrite(A2,LOW);  //3
+      digitalWrite(3,HIGH);  //4
+      digitalWrite(11,HIGH);  //5
+      digitalWrite(4,HIGH);  //6
+      digitalWrite(8,HIGH);  //7
+      digitalWrite(9,HIGH);  //8
+      }
+
+      if(rdm == 2){
+        //vrstice 
+      digitalWrite(2,HIGH);  //1
+      digitalWrite(7,HIGH);  //2
+      digitalWrite(13,HIGH);  //3
+      digitalWrite(5,LOW);  //4
+      digitalWrite(A5,LOW);  //5
+      digitalWrite(12,LOW);  //6
+      digitalWrite(A4,HIGH);  //7
+      digitalWrite(10,HIGH);  //8
+
+      //stolpci
+      digitalWrite(6,HIGH);  //1
+      digitalWrite(A3,HIGH);  //2
+      digitalWrite(A2,LOW);  //3
+      digitalWrite(3,HIGH);  //4
+      digitalWrite(11,HIGH);  //5
+      digitalWrite(4,HIGH);  //6
+      digitalWrite(8,HIGH);  //7
+      digitalWrite(9,HIGH);  //8
+      }
+      if(rdm == 3){
+        //vrstice 
+      digitalWrite(2,HIGH);  //1
+      digitalWrite(7,HIGH);  //2
+      digitalWrite(13,LOW);  //3
+      digitalWrite(5,LOW);  //4
+      digitalWrite(A5,LOW);  //5
+      digitalWrite(12,HIGH);  //6
+      digitalWrite(A4,HIGH);  //7
+      digitalWrite(10,HIGH);  //8
+
+      //stolpci
+      digitalWrite(6,HIGH);  //1
+      digitalWrite(A3,HIGH);  //2
+      digitalWrite(A2,LOW);  //3
+      digitalWrite(3,HIGH);  //4
+      digitalWrite(11,HIGH);  //5
+      digitalWrite(4,HIGH);  //6
+      digitalWrite(8,HIGH);  //7
+      digitalWrite(9,HIGH);  //8
+      }
+      if(rdm == 4){
+        //vrstice 
+      digitalWrite(2,HIGH);  //1
+      digitalWrite(7,LOW);  //2
+      digitalWrite(13,LOW);  //3
+      digitalWrite(5,LOW);  //4
+      digitalWrite(A5,HIGH);  //5
+      digitalWrite(12,HIGH);  //6
+      digitalWrite(A4,HIGH);  //7
+      digitalWrite(10,HIGH);  //8
+
+      //stolpci
+      digitalWrite(6,HIGH);  //1
+      digitalWrite(A3,HIGH);  //2
+      digitalWrite(A2,LOW);  //3
+      digitalWrite(3,HIGH);  //4
+      digitalWrite(11,HIGH);  //5
+      digitalWrite(4,HIGH);  //6
+      digitalWrite(8,HIGH);  //7
+      digitalWrite(9,HIGH);  //8
+      }
+
+  }
+  if(tmp == 4){
+    if(rdm == 1){
+       //vrstice 
+      digitalWrite(2,HIGH);  //1
+      digitalWrite(7,HIGH);  //2
+      digitalWrite(13,HIGH);  //3
+      digitalWrite(5,HIGH);  //4
+      digitalWrite(A5,LOW);  //5
+      digitalWrite(12,LOW);  //6
+      digitalWrite(A4,LOW);  //7
+      digitalWrite(10,HIGH);  //8
+
+      //stolpci
+      digitalWrite(6,HIGH);  //1
+      digitalWrite(A3,HIGH);  //2
+      digitalWrite(A2,HIGH);  //3
+      digitalWrite(3,LOW);  //4
+      digitalWrite(11,HIGH);  //5
+      digitalWrite(4,HIGH);  //6
+      digitalWrite(8,HIGH);  //7
+      digitalWrite(9,HIGH);  //8
+      }
+
+      if(rdm == 2){
+        //vrstice 
+      digitalWrite(2,HIGH);  //1
+      digitalWrite(7,HIGH);  //2
+      digitalWrite(13,HIGH);  //3
+      digitalWrite(5,LOW);  //4
+      digitalWrite(A5,LOW);  //5
+      digitalWrite(12,LOW);  //6
+      digitalWrite(A4,HIGH);  //7
+      digitalWrite(10,HIGH);  //8
+
+      //stolpci
+      digitalWrite(6,HIGH);  //1
+      digitalWrite(A3,HIGH);  //2
+      digitalWrite(A2,HIGH);  //3
+      digitalWrite(3,LOW);  //4
+      digitalWrite(11,HIGH);  //5
+      digitalWrite(4,HIGH);  //6
+      digitalWrite(8,HIGH);  //7
+      digitalWrite(9,HIGH);  //8
+      }
+      if(rdm == 3){
+        //vrstice 
+      digitalWrite(2,HIGH);  //1
+      digitalWrite(7,HIGH);  //2
+      digitalWrite(13,LOW);  //3
+      digitalWrite(5,LOW);  //4
+      digitalWrite(A5,LOW);  //5
+      digitalWrite(12,HIGH);  //6
+      digitalWrite(A4,HIGH);  //7
+      digitalWrite(10,HIGH);  //8
+
+      //stolpci
+      digitalWrite(6,HIGH);  //1
+      digitalWrite(A3,HIGH);  //2
+      digitalWrite(A2,HIGH);  //3
+      digitalWrite(3,LOW);  //4
+      digitalWrite(11,HIGH);  //5
+      digitalWrite(4,HIGH);  //6
+      digitalWrite(8,HIGH);  //7
+      digitalWrite(9,HIGH);  //8
+      }
+      if(rdm == 4){
+        //vrstice 
+      digitalWrite(2,HIGH);  //1
+      digitalWrite(7,LOW);  //2
+      digitalWrite(13,LOW);  //3
+      digitalWrite(5,LOW);  //4
+      digitalWrite(A5,HIGH);  //5
+      digitalWrite(12,HIGH);  //6
+      digitalWrite(A4,HIGH);  //7
+      digitalWrite(10,HIGH);  //8
+
+      //stolpci
+      digitalWrite(6,HIGH);  //1
+      digitalWrite(A3,HIGH);  //2
+      digitalWrite(A2,HIGH);  //3
+      digitalWrite(3,LOW);  //4
+      digitalWrite(11,HIGH);  //5
+      digitalWrite(4,HIGH);  //6
+      digitalWrite(8,HIGH);  //7
+      digitalWrite(9,HIGH);  //8
+      }
+
+  }
+  if(tmp == 5){
+    if(rdm == 1){
+       //vrstice 
+      digitalWrite(2,HIGH);  //1
+      digitalWrite(7,HIGH);  //2
+      digitalWrite(13,HIGH);  //3
+      digitalWrite(5,HIGH);  //4
+      digitalWrite(A5,LOW);  //5
+      digitalWrite(12,LOW);  //6
+      digitalWrite(A4,LOW);  //7
+      digitalWrite(10,HIGH);  //8
+
+      //stolpci
+      digitalWrite(6,HIGH);  //1
+      digitalWrite(A3,HIGH);  //2
+      digitalWrite(A2,HIGH);  //3
+      digitalWrite(3,HIGH);  //4
+      digitalWrite(11,LOW);  //5
+      digitalWrite(4,HIGH);  //6
+      digitalWrite(8,HIGH);  //7
+      digitalWrite(9,HIGH);  //8
+      }
+
+      if(rdm == 2){
+        //vrstice 
+      digitalWrite(2,HIGH);  //1
+      digitalWrite(7,HIGH);  //2
+      digitalWrite(13,HIGH);  //3
+      digitalWrite(5,LOW);  //4
+      digitalWrite(A5,LOW);  //5
+      digitalWrite(12,LOW);  //6
+      digitalWrite(A4,HIGH);  //7
+      digitalWrite(10,HIGH);  //8
+
+      //stolpci
+      digitalWrite(6,HIGH);  //1
+      digitalWrite(A3,HIGH);  //2
+      digitalWrite(A2,HIGH);  //3
+      digitalWrite(3,HIGH);  //4
+      digitalWrite(11,LOW);  //5
+      digitalWrite(4,HIGH);  //6
+      digitalWrite(8,HIGH);  //7
+      digitalWrite(9,HIGH);  //8
+      }
+      if(rdm == 3){
+        //vrstice 
+      digitalWrite(2,HIGH);  //1
+      digitalWrite(7,HIGH);  //2
+      digitalWrite(13,LOW);  //3
+      digitalWrite(5,LOW);  //4
+      digitalWrite(A5,LOW);  //5
+      digitalWrite(12,HIGH);  //6
+      digitalWrite(A4,HIGH);  //7
+      digitalWrite(10,HIGH);  //8
+
+      //stolpci
+      digitalWrite(6,HIGH);  //1
+      digitalWrite(A3,HIGH);  //2
+      digitalWrite(A2,HIGH);  //3
+      digitalWrite(3,HIGH);  //4
+      digitalWrite(11,LOW);  //5
+      digitalWrite(4,HIGH);  //6
+      digitalWrite(8,HIGH);  //7
+      digitalWrite(9,HIGH);  //8
+      }
+      if(rdm == 4){
+        //vrstice 
+      digitalWrite(2,HIGH);  //1
+      digitalWrite(7,LOW);  //2
+      digitalWrite(13,LOW);  //3
+      digitalWrite(5,LOW);  //4
+      digitalWrite(A5,HIGH);  //5
+      digitalWrite(12,HIGH);  //6
+      digitalWrite(A4,HIGH);  //7
+      digitalWrite(10,HIGH);  //8
+
+      //stolpci
+      digitalWrite(6,HIGH);  //1
+      digitalWrite(A3,HIGH);  //2
+      digitalWrite(A2,HIGH);  //3
+      digitalWrite(3,HIGH);  //4
+      digitalWrite(11,LOW);  //5
+      digitalWrite(4,HIGH);  //6
+      digitalWrite(8,HIGH);  //7
+      digitalWrite(9,HIGH);  //8
+      }
+
+  }
+  if(tmp == 6){
+    if(rdm == 1){
+       //vrstice 
+      digitalWrite(2,HIGH);  //1
+      digitalWrite(7,HIGH);  //2
+      digitalWrite(13,HIGH);  //3
+      digitalWrite(5,HIGH);  //4
+      digitalWrite(A5,LOW);  //5
+      digitalWrite(12,LOW);  //6
+      digitalWrite(A4,LOW);  //7
+      digitalWrite(10,HIGH);  //8
+
+      //stolpci
+      digitalWrite(6,HIGH);  //1
+      digitalWrite(A3,HIGH);  //2
+      digitalWrite(A2,HIGH);  //3
+      digitalWrite(3,HIGH);  //4
+      digitalWrite(11,HIGH);  //5
+      digitalWrite(4,LOW);  //6
+      digitalWrite(8,HIGH);  //7
+      digitalWrite(9,HIGH);  //8
+      }
+
+      if(rdm == 2){
+        //vrstice 
+      digitalWrite(2,HIGH);  //1
+      digitalWrite(7,HIGH);  //2
+      digitalWrite(13,HIGH);  //3
+      digitalWrite(5,LOW);  //4
+      digitalWrite(A5,LOW);  //5
+      digitalWrite(12,LOW);  //6
+      digitalWrite(A4,HIGH);  //7
+      digitalWrite(10,HIGH);  //8
+
+      //stolpci
+      digitalWrite(6,HIGH);  //1
+      digitalWrite(A3,HIGH);  //2
+      digitalWrite(A2,HIGH);  //3
+      digitalWrite(3,HIGH);  //4
+      digitalWrite(11,HIGH);  //5
+      digitalWrite(4,LOW);  //6
+      digitalWrite(8,HIGH);  //7
+      digitalWrite(9,HIGH);  //8
+      }
+      if(rdm == 3){
+        //vrstice 
+      digitalWrite(2,HIGH);  //1
+      digitalWrite(7,HIGH);  //2
+      digitalWrite(13,LOW);  //3
+      digitalWrite(5,LOW);  //4
+      digitalWrite(A5,LOW);  //5
+      digitalWrite(12,HIGH);  //6
+      digitalWrite(A4,HIGH);  //7
+      digitalWrite(10,HIGH);  //8
+
+      //stolpci
+      digitalWrite(6,HIGH);  //1
+      digitalWrite(A3,HIGH);  //2
+      digitalWrite(A2,HIGH);  //3
+      digitalWrite(3,HIGH);  //4
+      digitalWrite(11,HIGH);  //5
+      digitalWrite(4,LOW);  //6
+      digitalWrite(8,HIGH);  //7
+      digitalWrite(9,HIGH);  //8
+      }
+      if(rdm == 4){
+        //vrstice 
+      digitalWrite(2,HIGH);  //1
+      digitalWrite(7,LOW);  //2
+      digitalWrite(13,LOW);  //3
+      digitalWrite(5,LOW);  //4
+      digitalWrite(A5,HIGH);  //5
+      digitalWrite(12,HIGH);  //6
+      digitalWrite(A4,HIGH);  //7
+      digitalWrite(10,HIGH);  //8
+
+      //stolpci
+      digitalWrite(6,HIGH);  //1
+      digitalWrite(A3,HIGH);  //2
+      digitalWrite(A2,HIGH);  //3
+      digitalWrite(3,HIGH);  //4
+      digitalWrite(11,HIGH);  //5
+      digitalWrite(4,LOW);  //6
+      digitalWrite(8,HIGH);  //7
+      digitalWrite(9,HIGH);  //8
+      }
+
+  }
+  if(tmp == 7){
+    if(rdm == 1){
+       //vrstice 
+      digitalWrite(2,HIGH);  //1
+      digitalWrite(7,HIGH);  //2
+      digitalWrite(13,HIGH);  //3
+      digitalWrite(5,HIGH);  //4
+      digitalWrite(A5,LOW);  //5
+      digitalWrite(12,LOW);  //6
+      digitalWrite(A4,LOW);  //7
+      digitalWrite(10,HIGH);  //8
+
+      //stolpci
+      digitalWrite(6,HIGH);  //1
+      digitalWrite(A3,HIGH);  //2
+      digitalWrite(A2,HIGH);  //3
+      digitalWrite(3,HIGH);  //4
+      digitalWrite(11,HIGH);  //5
+      digitalWrite(4,HIGH);  //6
+      digitalWrite(8,LOW);  //7
+      digitalWrite(9,HIGH);  //8
+      }
+
+      if(rdm == 2){
+        //vrstice 
+      digitalWrite(2,HIGH);  //1
+      digitalWrite(7,HIGH);  //2
+      digitalWrite(13,HIGH);  //3
+      digitalWrite(5,LOW);  //4
+      digitalWrite(A5,LOW);  //5
+      digitalWrite(12,LOW);  //6
+      digitalWrite(A4,HIGH);  //7
+      digitalWrite(10,HIGH);  //8
+
+      //stolpci
+      digitalWrite(6,HIGH);  //1
+      digitalWrite(A3,HIGH);  //2
+      digitalWrite(A2,HIGH);  //3
+      digitalWrite(3,HIGH);  //4
+      digitalWrite(11,HIGH);  //5
+      digitalWrite(4,HIGH);  //6
+      digitalWrite(8,LOW);  //7
+      digitalWrite(9,HIGH);  //8
+      }
+      if(rdm == 3){
+        //vrstice 
+      digitalWrite(2,HIGH);  //1
+      digitalWrite(7,HIGH);  //2
+      digitalWrite(13,LOW);  //3
+      digitalWrite(5,LOW);  //4
+      digitalWrite(A5,LOW);  //5
+      digitalWrite(12,HIGH);  //6
+      digitalWrite(A4,HIGH);  //7
+      digitalWrite(10,HIGH);  //8
+
+      //stolpci
+      digitalWrite(6,HIGH);  //1
+      digitalWrite(A3,HIGH);  //2
+      digitalWrite(A2,HIGH);  //3
+      digitalWrite(3,HIGH);  //4
+      digitalWrite(11,HIGH);  //5
+      digitalWrite(4,HIGH);  //6
+      digitalWrite(8,LOW);  //7
+      digitalWrite(9,HIGH);  //8
+      }
+      if(rdm == 4){
+        //vrstice 
+      digitalWrite(2,HIGH);  //1
+      digitalWrite(7,LOW);  //2
+      digitalWrite(13,LOW);  //3
+      digitalWrite(5,LOW);  //4
+      digitalWrite(A5,HIGH);  //5
+      digitalWrite(12,HIGH);  //6
+      digitalWrite(A4,HIGH);  //7
+      digitalWrite(10,HIGH);  //8
+
+      //stolpci
+      digitalWrite(6,HIGH);  //1
+      digitalWrite(A3,HIGH);  //2
+      digitalWrite(A2,HIGH);  //3
+      digitalWrite(3,HIGH);  //4
+      digitalWrite(11,HIGH);  //5
+      digitalWrite(4,HIGH);  //6
+      digitalWrite(8,LOW);  //7
+      digitalWrite(9,HIGH);  //8
+      }
+
+  }
+  if(tmp == 8){
+      if(rdm == 1){
+       //vrstice 
+      digitalWrite(2,HIGH);  //1
+      digitalWrite(7,HIGH);  //2
+      digitalWrite(13,HIGH);  //3
+      digitalWrite(5,HIGH);  //4
+      digitalWrite(A5,LOW);  //5
+      digitalWrite(12,LOW);  //6
+      digitalWrite(A4,LOW);  //7
+      digitalWrite(10,HIGH);  //8
+
+      //stolpci
+      digitalWrite(6,HIGH);  //1
+      digitalWrite(A3,HIGH);  //2
+      digitalWrite(A2,HIGH);  //3
+      digitalWrite(3,HIGH);  //4
+      digitalWrite(11,HIGH);  //5
+      digitalWrite(4,HIGH);  //6
+      digitalWrite(8,HIGH);  //7
+      digitalWrite(9,LOW);  //8
+      }
+
+      if(rdm == 2){
+        //vrstice 
+      digitalWrite(2,HIGH);  //1
+      digitalWrite(7,HIGH);  //2
+      digitalWrite(13,HIGH);  //3
+      digitalWrite(5,LOW);  //4
+      digitalWrite(A5,LOW);  //5
+      digitalWrite(12,LOW);  //6
+      digitalWrite(A4,HIGH);  //7
+      digitalWrite(10,HIGH);  //8
+
+      //stolpci
+      digitalWrite(6,HIGH);  //1
+      digitalWrite(A3,HIGH);  //2
+      digitalWrite(A2,HIGH);  //3
+      digitalWrite(3,HIGH);  //4
+      digitalWrite(11,HIGH);  //5
+      digitalWrite(4,HIGH);  //6
+      digitalWrite(8,HIGH);  //7
+      digitalWrite(9,LOW);  //8
+      }
+      if(rdm == 3){
+        //vrstice 
+      digitalWrite(2,HIGH);  //1
+      digitalWrite(7,HIGH);  //2
+      digitalWrite(13,LOW);  //3
+      digitalWrite(5,LOW);  //4
+      digitalWrite(A5,LOW);  //5
+      digitalWrite(12,HIGH);  //6
+      digitalWrite(A4,HIGH);  //7
+      digitalWrite(10,HIGH);  //8
+
+      //stolpci
+      digitalWrite(6,HIGH);  //1
+      digitalWrite(A3,HIGH);  //2
+      digitalWrite(A2,HIGH);  //3
+      digitalWrite(3,HIGH);  //4
+      digitalWrite(11,HIGH);  //5
+      digitalWrite(4,HIGH);  //6
+      digitalWrite(8,HIGH);  //7
+      digitalWrite(9,LOW);  //8
+      }
+      if(rdm == 4){
+        //vrstice 
+      digitalWrite(2,HIGH);  //1
+      digitalWrite(7,LOW);  //2
+      digitalWrite(13,LOW);  //3
+      digitalWrite(5,LOW);  //4
+      digitalWrite(A5,HIGH);  //5
+      digitalWrite(12,HIGH);  //6
+      digitalWrite(A4,HIGH);  //7
+      digitalWrite(10,HIGH);  //8
+
+      //stolpci
+      digitalWrite(6,HIGH);  //1
+      digitalWrite(A3,HIGH);  //2
+      digitalWrite(A2,HIGH);  //3
+      digitalWrite(3,HIGH);  //4
+      digitalWrite(11,HIGH);  //5
+      digitalWrite(4,HIGH);  //6
+      digitalWrite(8,HIGH);  //7
+      digitalWrite(9,LOW);  //8
+      }
+  }
+  reset();
+}
+
+
+void delay75(){
+    delay(25);
+    player();
+    pipes();
+    delay(25);
+    player();
+    pipes();
+    delay(25);
+    player();
+    pipes();
+    
+}
+void delay100(){
+    delay(25);
+    player();
+    pipes();
+    delay(25);
+    player();
+    pipes();
+    delay(25);
+    player();
+    pipes();
+    delay(25);
+    player();
+    pipes();
+}
+void delay40(){
+    delay(25);
+    player();
+    pipes();
+    delay(25);
+    player();
+    pipes();
+}
+void zacetek(){
+     
+    for(int x = 0;x < 100;x++){
+      //vrstice 
+      digitalWrite(2,HIGH);  //1
+      digitalWrite(7,LOW);  //2
+      digitalWrite(13,LOW);  //3
+      digitalWrite(5,HIGH);  //4
+      digitalWrite(A5,LOW);  //5
+      digitalWrite(12,LOW);  //6
+      digitalWrite(A4,HIGH);  //7
+      digitalWrite(10,LOW);  //8
+      
+      //stolpci
+      digitalWrite(6,HIGH);  //1
+      digitalWrite(A3,HIGH);  //2
+      digitalWrite(A2,LOW);  //3
+      digitalWrite(3,LOW);  //4
+      digitalWrite(11,LOW);  //5
+      digitalWrite(4,HIGH);  //6
+      digitalWrite(8,HIGH);  //7
+      digitalWrite(9,HIGH);  //8
+
+      delay(10);
+      
+      //vrstice 
+      digitalWrite(2,LOW);  //1
+      digitalWrite(7,HIGH);  //2
+      digitalWrite(13,HIGH);  //3
+      digitalWrite(5,LOW);  //4
+      digitalWrite(A5,HIGH);  //5
+      digitalWrite(12,HIGH);  //6
+      digitalWrite(A4,LOW);  //7
+      digitalWrite(10,LOW);  //8
+
+      //stolpci
+      digitalWrite(6,HIGH);  //1
+      digitalWrite(A3,HIGH);  //2
+      digitalWrite(A2,HIGH);  //3
+      digitalWrite(3,HIGH);  //4
+      digitalWrite(11,HIGH);  //5
+      digitalWrite(4,LOW);  //6
+      digitalWrite(8,HIGH);  //7
+      digitalWrite(9,HIGH);  //8
+
+      delay(10);
+        x++;
+      } 
+      for(int y = 0;y < 80;y++){
+      //vrstice 
+      digitalWrite(2,HIGH);  //1
+      digitalWrite(7,LOW);  //2
+      digitalWrite(13,LOW);  //3
+      digitalWrite(5,LOW);  //4
+      digitalWrite(A5,LOW);  //5
+      digitalWrite(12,LOW);  //6
+      digitalWrite(A4,LOW);  //7
+      digitalWrite(10,LOW);  //8
+      
+      //stolpci
+      digitalWrite(6,HIGH);  //1
+      digitalWrite(A3,HIGH);  //2
+      digitalWrite(A2,HIGH);  //3
+      digitalWrite(3,LOW);  //4
+      digitalWrite(11,LOW);  //5
+      digitalWrite(4,HIGH);  //6
+      digitalWrite(8,HIGH);  //7
+      digitalWrite(9,HIGH);  //8
+
+      delay(2);
+      
+      //vrstice 
+      digitalWrite(2,LOW);  //1
+      digitalWrite(7,HIGH);  //2
+      digitalWrite(13,LOW);  //3
+      digitalWrite(5,LOW);  //4
+      digitalWrite(A5,LOW);  //5
+      digitalWrite(12,LOW);  //6
+      digitalWrite(A4,LOW);  //7
+      digitalWrite(10,LOW);  //8
+
+      //stolpci
+      digitalWrite(6,HIGH);  //1
+      digitalWrite(A3,HIGH);  //2
+      digitalWrite(A2,LOW);  //3
+      digitalWrite(3,HIGH);  //4
+      digitalWrite(11,HIGH);  //5
+      digitalWrite(4,LOW);  //6
+      digitalWrite(8,HIGH);  //7
+      digitalWrite(9,HIGH);  //8
+
+      delay(2);
+
+      //vrstice 
+      digitalWrite(2,LOW);  //1
+      digitalWrite(7,LOW);  //2
+      digitalWrite(13,HIGH);  //3
+      digitalWrite(5,LOW);  //4
+      digitalWrite(A5,LOW);  //5
+      digitalWrite(12,LOW);  //6
+      digitalWrite(A4,LOW);  //7
+      digitalWrite(10,LOW);  //8
+
+      //stolpci
+      digitalWrite(6,HIGH);  //1
+      digitalWrite(A3,HIGH);  //2
+      digitalWrite(A2,HIGH);  //3
+      digitalWrite(3,HIGH);  //4
+      digitalWrite(11,HIGH);  //5
+      digitalWrite(4,LOW);  //6
+      digitalWrite(8,HIGH);  //7
+      digitalWrite(9,HIGH);  //8
+
+      delay(2);
+
+      //vrstice 
+      digitalWrite(2,LOW);  //1
+      digitalWrite(7,LOW);  //2
+      digitalWrite(13,LOW);  //3
+      digitalWrite(5,HIGH);  //4
+      digitalWrite(A5,LOW);  //5
+      digitalWrite(12,LOW);  //6
+      digitalWrite(A4,LOW);  //7
+      digitalWrite(10,LOW);  //8
+
+      //stolpci
+      digitalWrite(6,HIGH);  //1
+      digitalWrite(A3,HIGH);  //2
+      digitalWrite(A2,HIGH);  //3
+      digitalWrite(3,HIGH);  //4
+      digitalWrite(11,LOW);  //5
+      digitalWrite(4,HIGH);  //6
+      digitalWrite(8,HIGH);  //7
+      digitalWrite(9,HIGH);  //8
+
+      delay(2);
+
+      //vrstice 
+      digitalWrite(2,LOW);  //1
+      digitalWrite(7,LOW);  //2
+      digitalWrite(13,LOW);  //3
+      digitalWrite(5,LOW);  //4
+      digitalWrite(A5,HIGH);  //5
+      digitalWrite(12,LOW);  //6
+      digitalWrite(A4,LOW);  //7
+      digitalWrite(10,LOW);  //8
+
+      //stolpci
+      digitalWrite(6,HIGH);  //1
+      digitalWrite(A3,HIGH);  //2
+      digitalWrite(A2,HIGH);  //3
+      digitalWrite(3,LOW);  //4
+      digitalWrite(11,HIGH);  //5
+      digitalWrite(4,HIGH);  //6
+      digitalWrite(8,HIGH);  //7
+      digitalWrite(9,HIGH);  //8
+
+      delay(2);
+
+      //vrstice 
+      digitalWrite(2,LOW);  //1
+      digitalWrite(7,LOW);  //2
+      digitalWrite(13,LOW);  //3
+      digitalWrite(5,LOW);  //4
+      digitalWrite(A5,LOW);  //5
+      digitalWrite(12,HIGH);  //6
+      digitalWrite(A4,LOW);  //7
+      digitalWrite(10,LOW);  //8
+
+      //stolpci
+      digitalWrite(6,HIGH);  //1
+      digitalWrite(A3,HIGH);  //2
+      digitalWrite(A2,LOW);  //3
+      digitalWrite(3,HIGH);  //4
+      digitalWrite(11,HIGH);  //5
+      digitalWrite(4,HIGH);  //6
+      digitalWrite(8,HIGH);  //7
+      digitalWrite(9,HIGH);  //8
+
+      delay(2);
+
+      //vrstice 
+      digitalWrite(2,LOW);  //1
+      digitalWrite(7,LOW);  //2
+      digitalWrite(13,LOW);  //3
+      digitalWrite(5,LOW);  //4
+      digitalWrite(A5,LOW);  //5
+      digitalWrite(12,LOW);  //6
+      digitalWrite(A4,HIGH);  //7
+      digitalWrite(10,LOW);  //8
+
+      //stolpci
+      digitalWrite(6,HIGH);  //1
+      digitalWrite(A3,HIGH);  //2
+      digitalWrite(A2,LOW);  //3
+      digitalWrite(3,LOW);  //4
+      digitalWrite(11,LOW);  //5
+      digitalWrite(4,LOW);  //6
+      digitalWrite(8,HIGH);  //7
+      digitalWrite(9,HIGH);  //8
+
+      delay(2);
+      
+      } 
+      for(int z = 0;z < 100;z++){
+      //vrstice 
+      digitalWrite(2,LOW);  //1
+      digitalWrite(7,HIGH);  //2
+      digitalWrite(13,HIGH);  //3
+      digitalWrite(5,HIGH);  //4
+      digitalWrite(A5,HIGH);  //5
+      digitalWrite(12,HIGH);  //6
+      digitalWrite(A4,HIGH);  //7
+      digitalWrite(10,LOW);  //8
+      
+      //stolpci
+      digitalWrite(6,HIGH);  //1
+      digitalWrite(A3,HIGH);  //2
+      digitalWrite(A2,HIGH);  //3
+      digitalWrite(3,HIGH);  //4
+      digitalWrite(11,LOW);  //5
+      digitalWrite(4,HIGH);  //6
+      digitalWrite(8,HIGH);  //7
+      digitalWrite(9,HIGH);  //8
+
+      delay(5);
+      
+      //vrstice 
+      digitalWrite(2,LOW);  //1
+      digitalWrite(7,LOW);  //2
+      digitalWrite(13,HIGH);  //3
+      digitalWrite(5,LOW);  //4
+      digitalWrite(A5,LOW);  //5
+      digitalWrite(12,LOW);  //6
+      digitalWrite(A4,LOW);  //7
+      digitalWrite(10,LOW);  //8
+
+      //stolpci
+      digitalWrite(6,HIGH);  //1
+      digitalWrite(A3,HIGH);  //2
+      digitalWrite(A2,HIGH);  //3
+      digitalWrite(3,LOW);  //4
+      digitalWrite(11,HIGH);  //5
+      digitalWrite(4,HIGH);  //6
+      digitalWrite(8,HIGH);  //7
+      digitalWrite(9,HIGH);  //8
+
+      delay(5);
+
+      //vrstice 
+      digitalWrite(2,LOW);  //1
+      digitalWrite(7,LOW);  //2
+      digitalWrite(13,LOW);  //3
+      digitalWrite(5,HIGH);  //4
+      digitalWrite(A5,LOW);  //5
+      digitalWrite(12,LOW);  //6
+      digitalWrite(A4,LOW);  //7
+      digitalWrite(10,LOW);  //8
+
+      //stolpci
+      digitalWrite(6,HIGH);  //1
+      digitalWrite(A3,HIGH);  //2
+      digitalWrite(A2,LOW);  //3
+      digitalWrite(3,HIGH);  //4
+      digitalWrite(11,HIGH);  //5
+      digitalWrite(4,HIGH);  //6
+      digitalWrite(8,HIGH);  //7
+      digitalWrite(9,HIGH);  //8
+
+      delay(5);
+   
+  } 
+}
+void smrt(){
+  if(tmp == 4){
+    if(rdm == 1){
+      if(tmr == 1||tmr == 2||tmr == 3||tmr == 4||tmr == 8){
+        smrt_animation();
+        a = 0;
+      }
+    }
+    if(rdm == 2){
+      if(tmr == 1||tmr == 2||tmr == 3||tmr == 7||tmr == 8){
+        smrt_animation();
+        a = 0;
+      }
+    }
+    if(rdm == 3){
+      if(tmr == 1||tmr == 2||tmr == 6||tmr == 7||tmr == 8){
+        smrt_animation();
+        a = 0;
+      }
+    }
+    if(rdm == 4){
+      if(tmr == 1||tmr == 5||tmr == 6||tmr == 7||tmr == 8){
+        smrt_animation();
+        a = 0;
+      }
+    }
+  }
+  if(tmp == 3){
+    if(rdm == 1){
+      if(tmr == 4||tmr == 8){
+        smrt_animation();
+        a = 0;
+      }
+    }
+    if(rdm == 2){
+      if(tmr == 3||tmr == 7){
+        smrt_animation();
+        a = 0;
+      }
+    }
+    if(rdm == 3){
+      if(tmr == 2||tmr == 6){
+        smrt_animation();
+        a = 0;
+      }
+    }
+    if(rdm == 4){
+      if(tmr == 1||tmr == 5){
+        smrt_animation();
+        a = 0;
+      }
+    }
+  }
+}
+
+void smrt_animation(){
+  for(int i = 0;i < 20; i++){
+    pipes();
+    delay(40);
+    player();
+    delay(40);
+  }
+}
+
+
